@@ -1,0 +1,26 @@
+{% extends "data/base.html" %}
+
+{% block title%}
+Pendaftaran Akun
+{% endblock title%}
+
+{% block content%}
+<h1>Login Akun</h1>
+
+{% for message in messages %}
+<p style="color: red;">{{ message }}</p>
+{% endfor %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input type="text" name="username" required> <br>
+    
+    <label for="password">Kata sandi</label>
+    <input type="password" name="password" required> <br>
+
+    <button type="submit">Login</button>
+</form>
+
+<a href="{% url 'data:register' %}">Belum mempunyai akun, daftar disini.</a>
+{% endblock content %}

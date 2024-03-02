@@ -1,0 +1,33 @@
+{% extends "data/base.html" %}
+
+{% block title%}
+Edit Data
+{% endblock title%}
+
+{% block content%}
+<h1>Edit Data</h1>
+
+{% for message in messages %}
+<p style="color: red;">{{ message }}</p>
+{% endfor %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="title">Judul</label>
+    <input type="text" name="title" value="{{ data.title }}" required> <br>
+    
+    <label for="description">Deskripsi</label>
+    <textarea name="description" id="" required>
+{{ data.description }}
+    </textarea><br>
+
+    <label for="image">Gambar</label>
+    <input type="file" accept="image/png; image/jpg; image/jpeg" name="image" required> <br>
+    {% if data.image %}
+    <span>Current: <a href="{{ data.image.url }}">image</a></span><br><br>
+    {% endif %}
+
+    <button type="submit">Edit</button>
+</form>
+{% endblock content %}
